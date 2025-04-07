@@ -1,0 +1,19 @@
+[project]
+name = "laionc"
+version = "0.1.0"
+description = "A lightweight library for evaluating accuracy on LAION-C"
+authors = [{ name = "Fanfei Li", email = "fanfei.li@tuebingen.mpg.de" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "torch",
+  "torchvision",
+  "numpy",
+  "scikit-learn",
+  "tqdm"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
