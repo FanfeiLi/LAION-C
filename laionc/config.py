@@ -10,7 +10,7 @@ default_config = {
     "dataset_location": "./mappings/imagenet_val",  # you can still fix this later
     "index_class_path": os.path.join(PACKAGE_DIR, "mappings", "imagenet_class_index.json"),
     "super_class_path": os.path.join(PACKAGE_DIR, "mappings", "category_mapping.json"),
-    "corruption_types":['glitched']
+    "corruption_types":['glitched','mosaic','stickers','vertical_lines','geometric_shapes','luminance_checkerboard']
 }
 
 # Function to load and prepare class mappings

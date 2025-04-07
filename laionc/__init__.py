@@ -8,6 +8,7 @@ def run_evaluation(
     batch_size=None,
     dataset_location=None,
     num_workers=None,
+    model_name="Model",
     augmentation_type=None,
     intensity_level=None
 ):
@@ -18,16 +19,35 @@ def run_evaluation(
         "num_workers": num_workers or config["num_workers"]
     })
    ## add corruptions
+        # Validate corruption type
+    if augmentation_type:
+        if augmentation_type not in config["corruption_types"]:
+            raise ValueError(
+                f"Invalid augmentation_type '{augmentation_type}'. "
+                f"Must be one of: {config['corruption_types']}"
+            )
+        corruption_list = [augmentation_type]
+    else:
+        corruption_list = config["corruption_types"]
+
     superclass_categories = load_class_mappings(
         config["index_class_path"], config["super_class_path"]
     )
-    corruption_list = [augmentation_type] if augmentation_type else config["corruption_types"]
-    intensity_list = [intensity_level] if intensity_level else [1, 2, 3, 4, 5]
+    valid_intensities = [1, 2, 3, 4, 5]
+    if intensity_level:
+        if intensity_level not in valid_intensities:
+            raise ValueError(
+                f"Invalid intensity_level '{intensity_level}'. "
+                f"Must be one of: {valid_intensities}"
+            )
+        intensity_list = [intensity_level]
+    else:
+        intensity_list = valid_intensities
     results = {}
-
+   
     for corruption in corruption_list:
         for severity in intensity_list:
-            data_path = os.path.join(config["dataset_location"], corruption, f"intensity_{severity}")
+            data_path = os.path.join(config["dataset_location"], corruption, f"intensity_level_{severity}")
             try:
                 dataloader = get_dataloader(
                     config["batch_size"],
@@ -40,13 +60,18 @@ def run_evaluation(
                     superclass_categories=superclass_categories
                 )
                 print(acc)
-                print(f"{corruption} | intensity_level {severity}: {acc*100:.2f}%")
+                print(f"{model_name} | {corruption} | severity {severity}: {acc*100:.2f}%")
+                #results[f"{corruption}_severity_{severity}"] = acc
                 if corruption not in results:
                     results[corruption] = {}
-                results[corruption][f"intensity_level_{severity}"] = acc
+                results[corruption][f"severity_{severity}"] = acc
 
             except Exception as e:
                 print(f"⚠️ Skipped {corruption} intensity level {severity} due to error: {e}")
 
     return results
+
+
+
+
 
