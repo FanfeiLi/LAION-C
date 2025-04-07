@@ -30,6 +30,4 @@ def evaluate_model(model, data_loader_val, device="cuda" if torch.cuda.is_availa
                 top1_correct=(max_class == ground_truth)
                 correct_predictions += top1_correct
     accuracy = correct_predictions / total_images
-    #output=f'For model {model_name} on dataset {dataset_location} ,Top1 Accuracy: {accuracy:.2f}'
-    #print(output)
     return accuracy

@@ -55,8 +55,6 @@ def download_dataset(location="default_location", augmentation_type=None, intens
 
 
 def get_dataloader(batch_size, num_workers, dataset_location, transform=None):
-    #download_dataset(location=dataset_location, augmentation_type=augmentation_type, intensity_level=intensity_level)
-    #data_path = os.path.join(dataset_location, augmentation_type, f"intensity_{intensity_level}")
     transform = transform or transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor()])
     dataset = ImageNetDataset(location=dataset_location, transform=transform)
     return DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
