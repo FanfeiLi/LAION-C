@@ -7,7 +7,7 @@ PACKAGE_DIR = os.path.dirname(__file__)
 default_config = {
     "batch_size": 32,
     "num_workers": 4,
-    "dataset_location": "./mappings/imagenet_val", 
+    "dataset_location": os.getenv("LAIONC_DATASET_DIR", "./"),
     "index_class_path": os.path.join(PACKAGE_DIR, "mappings", "imagenet_class_index.json"),
     "super_class_path": os.path.join(PACKAGE_DIR, "mappings", "category_mapping.json"),
     "corruption_types":['glitched','mosaic','stickers','vertical_lines','geometric_shapes','luminance_checkerboard']
