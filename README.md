@@ -47,8 +47,15 @@ Simply clone the repository and install the package (requires Python 3.8+):
 
 ### 📚 Citation
 
-If you use **LAION-C** in your research, please cite the paper:
+If you find **LAION-C** useful for your work, please consider citing it:
 
-> _[Citation will be available upon arXiv publication.]_
-
-In the meantime, you can find the submission on **OpenReview** [here](https://openreview.net/forum?id=t1IBHkU2bt&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2025%2FWorkshop%2FSCSL%2FAuthors%23your-submissions))!
+```bibtex
+@inproceedings{li2025laionc,
+  title     = {LAION-C: An Out-of-Distribution Benchmark for Web-Scale Vision Models},
+  author    = {Li, Fanfei and Klein, Thomas and Brendel, Wieland and Geirhos, Robert and Zimmermann, Roland S.},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning (ICML)},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/2506.16950}
+}
+```
+👉 [View on arXiv](https://arxiv.org/abs/2506.16950)
