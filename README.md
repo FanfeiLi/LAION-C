@@ -29,6 +29,20 @@ Simply clone the repository and install the package (requires Python 3.8+):
    cd LAION-C
    pip install -e .
    ```
+### 🧪 Evaluate Your Model
+
+After installation, you can evaluate any PyTorch model on LAION-C:
+
+```python
+from laionc import run_evaluation
+run_evaluation(model, dataset_location="...")
+```
+- `dataset_location`: path to your local LAION-C folder.
+
+- `augmentation_type / intensity_level` (optional): run specific distortions or severity levels. If left unspecified, all distortions and severity levels are evaluated.
+
+- `model_name / output_csv_path` (optional): used for logging only — no CSV is saved unless output_csv_path is set.
+
 
 ### Highest OOD (out-of-distribution) distortion robustness
 
